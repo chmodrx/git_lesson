@@ -1,2 +1,2 @@
 # git_lesson
-demonstrate git 
+Lesson 1: push conflict
