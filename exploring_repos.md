@@ -67,4 +67,71 @@ git push origin theme/conflicted-pull
 2. Click the green **"Compare & Pull request"** button that popped up for theme/conflicted-pull.
 3. Give a Title to the PR
 4. Add description
-5. Click **"Create pull request"**. Developer A can now review, leave comment, and smash the **Merge pull request** button!
+5. Click **"Create pull request"**. Developer A can now review, leave comment, and smash the **Merge pull request** button!   
+   
+
+⬅️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️   
+   
+
+# Next step after getting a pull request   
+
+### 📚 Review the Code and Description   
+- **Read the summary:** Check the PR description to understand what changes were made and why.
+- **Inspect the files:** Click on the **"Files changed"** tab to see a side-by-side comparison of the old code and the new code.
+- **Look for quality:** Check for bugs, formatting issues, security concerns, or a lack of comments.    
+   
+### 🔬 Verify Automated Checks (CI/CD)   
+   
+
+### 🧪 Test Locally (Optional but Recommended)   
+- **Pull the branch:** If it is a complex feature, download their specific branch to your computer.
+- **Run the app:** Test the feature locally to ensure it doesn't break existing features or cause unexpected bugs.  
+   
+   - **Method 1:** Using the GitHub CLI
+        - Check out the PR directly:
+        ```
+        gh pr check <PR NUMBER>
+        ```   
+        _This command automatically fetches the remote branch, creates a local branch matching the PR name, and switches you right into it. You are now ready to test the code._  
+
+   - **Method 2:** Using Standard Git Commands  
+     
+        **Option A: If the PR is from a branch inside your own repository**
+        If a team member made the PR from a branch within your main repository, just fetch and switch to it:  
+          
+        1. fetch all remote branches
+        ```
+        git fetch origin
+        ```  
+          
+        2. Switch to the PR's branch   
+        ```
+        git checkout <BRANCH_NAME>
+        ```   
+           
+        **Option B: If the PR is from a "Fork" (External Contributor)**   
+        If an outside contributor forked your repository, you need to pull their specific PR reference number into a temporary local branch:  
+          
+        1. Fetch the specific PR data:   
+        ```
+        git fetch origin pull/<PR_NUMBER>/head:pr-<PR_NUMBER>
+        ```   
+        _(e.g., git fetch origin pull/42/head:pr-42)_
+
+        2. Switch to that new local PR branch:   
+        ```
+        git checkout pr-<PR_NUMBER>
+        ```
+    _Once you are finished testing, switch back to your main branch using git checkout main._
+   
+
+### 🔀 Merge the Pull Request   
+Once you are satisfied and all tests pass, click the **"Merge pull request"** button. You generally have three merging choices:
+- **Create a merge commit:** Combines all history exactly as it happened (best for preserving detailed commit history).
+- **Squash and merge:** Combines all of the PR's commits into one single, clean commit (best for keeping the main branch history tidy).
+- **Rebase and merge:** Applies the PR commits directly on top of the main branch without a merge commit.  
+   
+
+### 🧹 Clean Up   
+- **Delete the branch:** After a successful merge, click the button to delete the feature branch to keep your repository clean.
+- **Close issues:** If the PR included a keyword like "Closes #12", the corresponding issue will close automatically.
