@@ -9,6 +9,15 @@ $ git config --global init.defaultBranch main
 ```
 
 ```
+git config --list
+```
+
+```
+git config --list --show-origin
+```
+
+
+```
 git remote add origin <repository url>
 ```
 
